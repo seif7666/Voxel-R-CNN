@@ -30,6 +30,7 @@ class DataAugmentor(object):
             class_names=self.class_names,
             logger=self.logger
         )
+        print('HERE')
         return db_sampler
 
     def __getstate__(self):
