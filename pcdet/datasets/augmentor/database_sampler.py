@@ -17,6 +17,7 @@ class DataBaseSampler(object):
             self.db_infos[class_name] = []
 
         for db_info_path in sampler_cfg.DB_INFO_PATH:
+            db_info_path='dbinfos_train.pkl'
             db_info_path = self.root_path.resolve() / db_info_path
             print(db_info_path)
             with open(str(db_info_path), 'rb') as f:
