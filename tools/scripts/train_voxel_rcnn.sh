@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export CUDA_VISIBLE_DEVICES=0
 
 # set -x
-NGPUS=8
+NGPUS=1
 CFG_DIR=cfgs
 
 CFG_NAME=voxel_rcnn/voxel_rcnn_car
