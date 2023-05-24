@@ -143,8 +143,8 @@ class VoxelBackBone8x(nn.Module):
             indices=voxel_coords.int(),
             spatial_shape=self.sparse_shape,
             batch_size=batch_size
-        )
-
+        ).cuda()
+        
         x = self.conv_input(input_sp_tensor)
 
         x_conv1 = self.conv1(x)
