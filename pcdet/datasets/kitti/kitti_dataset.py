@@ -343,11 +343,11 @@ class KittiDataset(DatasetTemplate):
             index = index % len(self.kitti_infos)
 
         info = copy.deepcopy(self.kitti_infos[index])
-        for key in info.keys() :
-            print(f'Current Key is {key}')
-            print(info[key].keys())
-        return
-            
+        # for key in info.keys() :
+        #     print(f'Current Key is {key}')
+        #     print(info[key].keys())
+        # return
+        print(info['calib'])
         lidar_path=info['point_cloud']['velodyne_path']
         calib_path=info['calib']['calib_path']
 
