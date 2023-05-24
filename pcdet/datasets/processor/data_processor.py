@@ -72,6 +72,8 @@ class DataProcessor(object):
             data_dict['voxel_num_points'] = num_points
         else:
             points = data_dict['points']
+            print(type(points))
+            
             voxel_output = voxel_generator(points)
             if isinstance(voxel_output, dict):
                 voxels, coordinates, num_points = \
