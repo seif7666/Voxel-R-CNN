@@ -53,7 +53,9 @@ class Calibration(object):
         :return pts_rect: (N, 3)
         """
         # pts_rect_hom = self.cart_to_hom(pts_rect)  # (N, 4)
-        print(self.R0)
+        print(self.R0.shape)
+        print(self.V2C.shape)
+
         R0_ext = self.R0#np.hstack((self.R0, np.zeros((3, 1), dtype=np.float32)))  # (3, 4)
         # R0_ext = np.vstack((R0_ext, np.zeros((1, 4), dtype=np.float32)))  # (4, 4)
         R0_ext[3, 3] = 1
