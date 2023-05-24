@@ -77,10 +77,10 @@ class Calibration(object):
         :param pts_rect: (N, 3)
         :return pts_img: (N, 2)
         """
-        print(pts_rect.shape)
-        pts_rect_hom = self.cart_to_hom(pts_rect)
-        pts_2d_hom = np.dot(pts_rect_hom, self.P2.T)
-        pts_img = (pts_2d_hom[:, 0:2].T / pts_rect_hom[:, 2]).T  # (N, 2)
+        # print(pts_rect.shape)
+        # pts_rect_hom = self.cart_to_hom(pts_rect)
+        pts_2d_hom = np.dot(pts_rect, self.P2.T)
+        pts_img = (pts_2d_hom[:, 0:2].T / pts_rect[:, 2]).T  # (N, 2)
         pts_rect_depth = pts_2d_hom[:, 2] - self.P2.T[3, 2]  # depth in rect camera coord
         return pts_img, pts_rect_depth
 
