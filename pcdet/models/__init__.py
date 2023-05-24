@@ -17,10 +17,10 @@ def load_data_to_gpu(batch_dict):
     for key, val in batch_dict.items():
         if not isinstance(val, np.ndarray):
             continue
-        if key in ['frame_id', 'metadata', 'calib', 'image_shape']:
+        if key in ['frame_id', 'metadata', 'calib', 'image_shape','point_cloud']:
             continue
-        print(val)
-        batch_dict[key] = torch.from_numpy(val).float().cuda()
+        # print(val)
+        batch_dict[key] = torch.from_numpy(val.astype(np.float32)).float().cuda()
 
 
 def model_fn_decorator():
