@@ -376,6 +376,7 @@ class KittiDataset(DatasetTemplate):
                 'gt_boxes': gt_boxes_lidar
             })
             road_plane = self.get_road_plane(info['point_cloud'])
+            print(road_plane)
             if road_plane is not None:
                 input_dict['road_plane'] = road_plane
 
