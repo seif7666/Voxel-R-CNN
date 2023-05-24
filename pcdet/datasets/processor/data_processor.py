@@ -1,6 +1,7 @@
 from functools import partial
 
 import numpy as np
+import torch
 
 from ...utils import box_utils, common_utils
 
@@ -72,9 +73,9 @@ class DataProcessor(object):
             data_dict['voxel_num_points'] = num_points
         else:
             points = data_dict['points']
-            print(type(points))
-            
-            voxel_output = voxel_generator(points)
+            pc_th = torch.from_numpy(points)
+            print(type(pc_th))
+            voxel_output = voxel_generator(pc_th)
             if isinstance(voxel_output, dict):
                 voxels, coordinates, num_points = \
                     voxel_output['voxels'], voxel_output['coordinates'], voxel_output['num_points_per_voxel']
