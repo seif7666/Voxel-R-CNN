@@ -343,11 +343,7 @@ class KittiDataset(DatasetTemplate):
             index = index % len(self.kitti_infos)
 
         info = copy.deepcopy(self.kitti_infos[index])
-        # for key in info.keys() :
-        #     print(f'Current Key is {key}')
-        #     print(info[key].keys())
-        # return
-        print(info['calib'].keys())
+        
         lidar_path=info['point_cloud']['velodyne_path']
         # calib_path=info['calib']['calib_path']
 
@@ -360,9 +356,10 @@ class KittiDataset(DatasetTemplate):
             fov_flag = self.get_fov_flag(pts_rect, img_shape, calib)
             points = points[fov_flag]
 
+        print(f'Points shape is {points}')
         input_dict = {
             'points': points,
-            'frame_id': sample_idx,
+            'point_cloud': info['point_cloud'],
             'calib': calib,
         }
 
@@ -378,7 +375,7 @@ class KittiDataset(DatasetTemplate):
                 'gt_names': gt_names,
                 'gt_boxes': gt_boxes_lidar
             })
-            road_plane = self.get_road_plane(sample_idx)
+            road_plane = self.get_road_plane(info['point_cloud'])
             if road_plane is not None:
                 input_dict['road_plane'] = road_plane
 
