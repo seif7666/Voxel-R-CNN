@@ -72,7 +72,7 @@ class DataProcessor(object):
             data_dict['voxel_num_points'] = num_points
         else:
             points = data_dict['points']
-            voxel_output = voxel_generator.generate(points)
+            voxel_output = voxel_generator(points)
             if isinstance(voxel_output, dict):
                 voxels, coordinates, num_points = \
                     voxel_output['voxels'], voxel_output['coordinates'], voxel_output['num_points_per_voxel']
