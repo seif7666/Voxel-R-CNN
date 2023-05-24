@@ -74,10 +74,10 @@ class KittiDataset(DatasetTemplate):
         assert label_file.exists()
         return object3d_kitti.get_objects_from_label(label_file)
 
-    def get_calib(self, idx):
-        calib_file = self.root_split_path / 'calib' / ('%s.txt' % idx)
-        assert calib_file.exists()
-        return calibration_kitti.Calibration(calib_file)
+    def get_calib(self, calib):
+        # calib_file = self.root_split_path / 'calib' / ('%s.txt' % idx)
+        # assert calib_file.exists()
+        return calibration_kitti.Calibration(calib)
 
     def get_road_plane(self, idx):
         plane_file = self.root_split_path / 'planes' / ('%s.txt' % idx)
@@ -347,12 +347,12 @@ class KittiDataset(DatasetTemplate):
         #     print(f'Current Key is {key}')
         #     print(info[key].keys())
         # return
-        print(info['calib'])
+        print(info['calib'].keys())
         lidar_path=info['point_cloud']['velodyne_path']
-        calib_path=info['calib']['calib_path']
+        # calib_path=info['calib']['calib_path']
 
         points = self.get_lidar(lidar_path)
-        calib = self.get_calib(calib_path)
+        calib = self.get_calib(info['calib'])
 
         img_shape = info['image']['image_shape']
         if self.dataset_cfg.FOV_POINTS_ONLY:

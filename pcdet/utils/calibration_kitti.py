@@ -21,15 +21,15 @@ def get_calib_from_file(calib_file):
 
 
 class Calibration(object):
-    def __init__(self, calib_file):
-        if not isinstance(calib_file, dict):
-            calib = get_calib_from_file(calib_file)
-        else:
-            calib = calib_file
+    def __init__(self, calib_dict):
+        # if not isinstance(calib_file, dict):
+        #     calib = get_calib_from_file(calib_file)
+        # else:
+        #     calib = calib_file
 
-        self.P2 = calib['P2']  # 3 x 4
-        self.R0 = calib['R0']  # 3 x 3
-        self.V2C = calib['Tr_velo2cam']  # 3 x 4
+        self.P2 = calib_dict['P2']  # 3 x 4
+        self.R0 = calib_dict['R0']  # 3 x 3
+        self.V2C = calib_dict['Tr_velo_to_cam']  # 3 x 4
 
         # Camera intrinsics and extrinsics
         self.cu = self.P2[0, 2]
