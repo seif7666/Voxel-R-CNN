@@ -28,7 +28,7 @@ class Calibration(object):
         #     calib = calib_file
 
         self.P2 = calib_dict['P2']  # 3 x 4
-        self.R0 = calib_dict['R0']  # 3 x 3
+        self.R0 = calib_dict['R0_rect']  # 3 x 3
         self.V2C = calib_dict['Tr_velo_to_cam']  # 3 x 4
 
         # Camera intrinsics and extrinsics
