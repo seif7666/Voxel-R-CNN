@@ -343,7 +343,7 @@ class KittiDataset(DatasetTemplate):
             index = index % len(self.kitti_infos)
 
         info = copy.deepcopy(self.kitti_infos[index])
-        print(info['point_cloud'].keys())
+        print(info['point_cloud']['lidar_idx'])
         sample_idx = info['point_cloud']['lidar_idx']
 
         points = self.get_lidar(sample_idx)
