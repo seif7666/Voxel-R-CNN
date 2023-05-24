@@ -61,7 +61,7 @@ class KittiDataset(DatasetTemplate):
 
     def get_lidar(self, path):
         lidar_file = path
-        assert lidar_file.exists()
+        # assert lidar_file.exists()
         return np.fromfile(str(lidar_file), dtype=np.float32).reshape(-1, 4)
 
     def get_image_shape(self, idx):
