@@ -52,7 +52,7 @@ class Calibration(object):
         :param pts_lidar: (N, 3)
         :return pts_rect: (N, 3)
         """
-        # pts_rect_hom = self.cart_to_hom(pts_rect)  # (N, 4)
+        pts_rect_hom = self.cart_to_hom(pts_rect)  # (N, 4)
         print(self.R0.shape)
         print(self.V2C.shape)
         print(pts_rect.shape)
