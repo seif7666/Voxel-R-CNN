@@ -145,7 +145,7 @@ class VoxelBackBone8x(nn.Module):
             batch_size=batch_size
         )
 
-        x = self.conv_input(input_sp_tensor)
+        x = self.conv_input(input_sp_tensor.cuda())
 
         x_conv1 = self.conv1(x)
         x_conv2 = self.conv2(x_conv1)
