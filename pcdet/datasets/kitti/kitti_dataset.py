@@ -59,8 +59,8 @@ class KittiDataset(DatasetTemplate):
         split_dir = self.root_path / 'ImageSets' / (self.split + '.txt')
         self.sample_id_list = [x.strip() for x in open(split_dir).readlines()] if split_dir.exists() else None
 
-    def get_lidar(self, idx):
-        lidar_file = self.root_split_path / 'velodyne' / ('%s.bin' % idx)
+    def get_lidar(self, path):
+        lidar_file = path
         assert lidar_file.exists()
         return np.fromfile(str(lidar_file), dtype=np.float32).reshape(-1, 4)
 
@@ -344,10 +344,11 @@ class KittiDataset(DatasetTemplate):
 
         info = copy.deepcopy(self.kitti_infos[index])
         print(info['point_cloud'])
-        sample_idx = info['point_cloud']['lidar_idx']
+        lidar_path=info['point_cloud']['velodyne_path']
+        calib_path=info['calib']['calib_path']
 
-        points = self.get_lidar(sample_idx)
-        calib = self.get_calib(sample_idx)
+        points = self.get_lidar(lidar_path)
+        calib = self.get_calib(calib_path)
 
         img_shape = info['image']['image_shape']
         if self.dataset_cfg.FOV_POINTS_ONLY:
