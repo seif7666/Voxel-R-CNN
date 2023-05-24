@@ -75,6 +75,7 @@ class DataProcessor(object):
             points = data_dict['points']
             pc_th = torch.from_numpy(points)
             print(type(pc_th))
+            print(pc_th.shape)
             voxel_output = voxel_generator(pc_th)
             if isinstance(voxel_output, dict):
                 voxels, coordinates, num_points = \
