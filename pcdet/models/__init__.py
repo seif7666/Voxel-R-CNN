@@ -19,6 +19,7 @@ def load_data_to_gpu(batch_dict):
             continue
         if key in ['frame_id', 'metadata', 'calib', 'image_shape']:
             continue
+        print(val)
         batch_dict[key] = torch.from_numpy(val).float().cuda()
 
 
