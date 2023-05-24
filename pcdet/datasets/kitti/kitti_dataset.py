@@ -98,7 +98,7 @@ class KittiDataset(DatasetTemplate):
         return plane
 
     @staticmethod
-    def get_fov_flag(pts_rect, img_shape, calib):
+    def get_fov_flag(pts_rect, img_shape, calib:calibration_kitti.Calibration):
         """
         Args:
             pts_rect:
