@@ -136,7 +136,7 @@ class VoxelBackBone8x(nn.Module):
             batch_dict:
                 encoded_spconv_tensor: sparse tensor
         """
-        print('In Backbone 8X')
+        # print('In Backbone 8X')
         voxel_features, voxel_coords = batch_dict['voxel_features'], batch_dict['voxel_coords']
         batch_size = batch_dict['batch_size']
         input_sp_tensor = spconv.SparseConvTensor(
@@ -175,7 +175,7 @@ class VoxelBackBone8x(nn.Module):
                 'x_conv4': 8,
             }
         })
-        print('Exiting BackBone8X')
+        # print('Exiting BackBone8X')
         return batch_dict
 
 
