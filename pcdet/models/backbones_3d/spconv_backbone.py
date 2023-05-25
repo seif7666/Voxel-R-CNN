@@ -137,7 +137,6 @@ class VoxelBackBone8x(nn.Module):
                 encoded_spconv_tensor: sparse tensor
         """
         print('In Backbone 8X')
-        print(batch_dict.keys())
         voxel_features, voxel_coords = batch_dict['voxel_features'], batch_dict['voxel_coords']
         batch_size = batch_dict['batch_size']
         input_sp_tensor = spconv.SparseConvTensor(
@@ -145,7 +144,7 @@ class VoxelBackBone8x(nn.Module):
             indices=voxel_coords.int(),
             spatial_shape=self.sparse_shape,
             batch_size=batch_size
-        ).to('cuda')
+        )
         
         x = self.conv_input(input_sp_tensor)
 
