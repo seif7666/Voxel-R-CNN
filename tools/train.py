@@ -60,6 +60,7 @@ def main():
     if args.launcher == 'none':
         dist_train = False
         total_gpus = 1
+        print('Not Distributed!')
     else:
         total_gpus, cfg.LOCAL_RANK = getattr(common_utils, 'init_dist_%s' % args.launcher)(
             args.tcp_port, args.local_rank, backend='nccl'
@@ -115,7 +116,7 @@ def main():
     model = build_network(model_cfg=cfg.MODEL, num_class=len(cfg.CLASS_NAMES), dataset=train_set)
     if args.sync_bn:
         model = torch.nn.SyncBatchNorm.convert_sync_batchnorm(model)
-    model.cuda()
+    model=model.cuda()
 
     optimizer = build_optimizer(model, cfg.OPTIMIZATION)
 
