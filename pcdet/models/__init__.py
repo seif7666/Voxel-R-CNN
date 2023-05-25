@@ -15,6 +15,7 @@ def build_network(model_cfg, num_class, dataset):
 
 def load_data_to_gpu(batch_dict):
     for key, val in batch_dict.items():
+        print(batch_dict.keys())
         if not isinstance(val, np.ndarray):
             continue
         if key in ['frame_id', 'metadata', 'calib', 'image_shape','point_cloud']:
@@ -27,7 +28,6 @@ def model_fn_decorator():
     ModelReturn = namedtuple('ModelReturn', ['loss', 'tb_dict', 'disp_dict'])
 
     def model_func(model, batch_dict):
-        print(model)
         load_data_to_gpu(batch_dict)
         ret_dict, tb_dict, disp_dict = model(batch_dict)
 
