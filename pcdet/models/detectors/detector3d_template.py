@@ -120,8 +120,8 @@ class Detector3DTemplate(nn.Module):
     def build_dense_head(self, model_info_dict):
         if self.model_cfg.get('DENSE_HEAD', None) is None:
             return None, model_info_dict
-        print(f'Model is {self.model_cfg.DENSE_HEAD.NAME}')
-        print(dense_heads.__all__.keys())
+        # print(f'Model is {self.model_cfg.DENSE_HEAD.NAME}')
+        # print(dense_heads.__all__.keys())
         dense_head_module = dense_heads.__all__[self.model_cfg.DENSE_HEAD.NAME](
             model_cfg=self.model_cfg.DENSE_HEAD,
             input_channels=model_info_dict['num_bev_features'],

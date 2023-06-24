@@ -175,14 +175,14 @@ class GuidedAnchorHead(AnchorHeadTemplate):
     #         override=dict(
     #             type='Normal', name='conv_loc', std=0.01, lbias_prob=0.01))
     # ) -> None:
-    def __init__(self,model_cfg,num_class,class_names,grid_size,point_cloud_range,predict_boxes_when_training=True):
+    def __init__(self,model_cfg,input_channels,num_class,class_names,grid_size,point_cloud_range,predict_boxes_when_training=True):
         super().__init__(
             model_cfg=model_cfg, num_class=num_class, class_names=class_names, grid_size=grid_size, point_cloud_range=point_cloud_range,
             predict_boxes_when_training=predict_boxes_when_training
         )
         print(f'******************************* Called GUIDED****************!')
         approx_anchor_generator,square_anchor_generator,anchor_coder,bbox_coder,loss_loc,loss_cls,loss_shape,loss_bbox,reg_decoded_bbox=self.__initparameters()    
-        self.in_channels = 32
+        self.in_channels = input_channels
         self.num_classes = num_class
         self.feat_channels = 256
         self.deform_groups = 4
