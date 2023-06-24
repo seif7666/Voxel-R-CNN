@@ -14,5 +14,4 @@ __all__ = {
     'PointHeadBox': PointHeadBox,
     'AnchorHeadMulti': AnchorHeadMulti,
     'GuidedAnchorHead':GuidedAnchorHead
-
 }
