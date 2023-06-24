@@ -13,6 +13,7 @@ from ..model_utils import model_nms_utils
 class Detector3DTemplate(nn.Module):
     def __init__(self, model_cfg, num_class, dataset):
         super().__init__()
+        print('Initializing..............')
         self.model_cfg = model_cfg
         self.num_class = num_class
         self.dataset = dataset
@@ -32,8 +33,6 @@ class Detector3DTemplate(nn.Module):
         self.global_step += 1
 
     def build_networks(self):
-        # print(dense_heads.__all__.keys())
-        return
         model_info_dict = {
             'module_list': [],
             'num_rawpoint_features': self.dataset.point_feature_encoder.num_point_features,
