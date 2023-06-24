@@ -511,7 +511,6 @@ class AnchorGenerator:
         return repr_str
 
 
-@TASK_UTILS.register_module()
 class SSDAnchorGenerator(AnchorGenerator):
     """Anchor generator for SSD.
 
@@ -654,7 +653,6 @@ class SSDAnchorGenerator(AnchorGenerator):
         return repr_str
 
 
-@TASK_UTILS.register_module()
 class LegacyAnchorGenerator(AnchorGenerator):
     """Legacy anchor generator used in MMDetection V1.x.
 
@@ -757,7 +755,6 @@ class LegacyAnchorGenerator(AnchorGenerator):
         return base_anchors
 
 
-@TASK_UTILS.register_module()
 class LegacySSDAnchorGenerator(SSDAnchorGenerator, LegacyAnchorGenerator):
     """Legacy anchor generator used in MMDetection V1.x.
 
@@ -784,7 +781,6 @@ class LegacySSDAnchorGenerator(SSDAnchorGenerator, LegacyAnchorGenerator):
         self.base_anchors = self.gen_base_anchors()
 
 
-@TASK_UTILS.register_module()
 class YOLOAnchorGenerator(AnchorGenerator):
     """Anchor generator for YOLO.
 
