@@ -6,10 +6,8 @@ import torch.nn as nn
 from torch import Tensor
 
 from mmdet.registry import MODELS
-from .utils import weighted_loss
 
 
-@weighted_loss
 def smooth_l1_loss(pred: Tensor, target: Tensor, beta: float = 1.0) -> Tensor:
     """Smooth L1 loss.
 
@@ -33,7 +31,6 @@ def smooth_l1_loss(pred: Tensor, target: Tensor, beta: float = 1.0) -> Tensor:
     return loss
 
 
-@weighted_loss
 def l1_loss(pred: Tensor, target: Tensor) -> Tensor:
     """L1 loss.
 
@@ -52,7 +49,6 @@ def l1_loss(pred: Tensor, target: Tensor) -> Tensor:
     return loss
 
 
-@MODELS.register_module()
 class SmoothL1Loss(nn.Module):
     """Smooth L1 loss.
 
@@ -117,7 +113,6 @@ class SmoothL1Loss(nn.Module):
         return loss_bbox
 
 
-@MODELS.register_module()
 class L1Loss(nn.Module):
     """L1 loss.
 
