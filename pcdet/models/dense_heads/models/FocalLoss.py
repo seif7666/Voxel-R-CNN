@@ -168,7 +168,7 @@ class FocalLoss(nn.Module):
     #              reduction='mean',
     #              loss_weight=1.0,
     #              activated=False):
-    def __init(self,dictionary):
+    def __init__(self,dictionary):
         use_sigmoid=True if not 'use_sigmoid' in dictionary else dictionary['use_sigmoid']
         gamma=2.0 if not 'gamma' in dictionary else dictionary['gamma']
         alpha=.25 if not 'alpha' in dictionary else dictionary['alpha']
