@@ -207,15 +207,16 @@ class GuidedAnchorHead(AnchorHeadTemplate):
     def forward(self, x: List[Tensor]) -> Tuple[List[Tensor]]:
         """Forward features from the upstream network."""
         tensors=x['spatial_features_2d']
-        tensors=self.forward_single(tensors)
-        print(tensors)
-        print(len(tensors[1]))
+        cls_score,bbox_pred,shape_pred,loc_pred=self.forward_single(tensors)
+        
+        cls_score = cls_score.permute(0, 2, 3, 1).contiguous()  # [N, H, W, C]
+        bbox_pred = bbox_pred.permute(0, 2, 3, 1).contiguous()  # [N, H, W, C]
         
         x['cls_preds_normalized'] = False
 
         batch_cls_preds, batch_box_preds = self.generate_predicted_boxes(
                 batch_size=x['batch_size'],
-                cls_preds=tensors[0], box_preds=tensors[1], dir_cls_preds=None
+                cls_preds=cls_score, box_preds=bbox_pred, dir_cls_preds=None
             )
         
         x['batch_cls_preds']= batch_cls_preds
