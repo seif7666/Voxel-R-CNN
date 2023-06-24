@@ -209,4 +209,4 @@ class GuidedAnchorHead(AnchorHeadTemplate):
         x=x['spatial_features_2d']
         
 
-        return self.forward(x)
+        return self.forward_single(x)
