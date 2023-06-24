@@ -208,7 +208,7 @@ class GuidedAnchorHead(AnchorHeadTemplate):
         """Forward features from the upstream network."""
         x=x['spatial_features_2d']
         x=list(x[:])
-        print(len(x.shape))
+        print(len(x))
         print(x[0].shape)
 
         return multi_apply(self.forward_single, x)
