@@ -208,6 +208,7 @@ class GuidedAnchorHead(AnchorHeadTemplate):
         """Forward features from the upstream network."""
         tensors=x['spatial_features_2d']
         tensors=self.forward_single(tensors)
+        print(tensors)
         x['batch_cls_preds']= tensors[0]
         x['batch_box_preds']= tensors[1]
         x['cls_preds_normalized'] = False
