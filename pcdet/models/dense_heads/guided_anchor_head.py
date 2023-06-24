@@ -1,4 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
+from .props.anchor_generator import AnchorGenerator
+from .props.DeltaXYWHBBoxCoder import DeltaXYWHBBoxCoder
+from .models import SmoothL1Loss,CrossEntropyLoss,BoundedIoULoss,FocalLoss
 from typing import List, Optional, Tuple
 import numpy as np
 import torch.nn as nn
@@ -99,12 +102,9 @@ class GuidedAnchorHead(AnchorHeadTemplate):
         #         square_anchor_generator['scales'][0])
         # assert (approx_anchor_generator['strides'] ==
         #         square_anchor_generator['strides'])
-        self.approx_anchor_generator = TASK_UTILS.build(
-            approx_anchor_generator)
-        self.square_anchor_generator = TASK_UTILS.build(
-            square_anchor_generator)
-        self.approxs_per_octave = self.approx_anchor_generator \
-            .num_base_priors[0]
+        self.approx_anchor_generator = AnchorGenerator(approx_anchor_generator)
+        self.square_anchor_generator = AnchorGenerator(square_anchor_generator)
+        self.approxs_per_octave = self.approx_anchor_generator.num_base_priors[0]
 
         self.reg_decoded_bbox = reg_decoded_bbox
 
@@ -119,14 +119,14 @@ class GuidedAnchorHead(AnchorHeadTemplate):
             self.cls_out_channels = self.num_classes + 1
 
         # build bbox_coder
-        self.anchor_coder = TASK_UTILS.build(anchor_coder)
-        self.bbox_coder = TASK_UTILS.build(bbox_coder)
+        self.anchor_coder = DeltaXYWHBBoxCoder(anchor_coder)
+        self.bbox_coder = DeltaXYWHBBoxCoder(bbox_coder)
 
         # build losses
-        self.loss_loc = MODELS.build(loss_loc)
-        self.loss_shape = MODELS.build(loss_shape)
-        self.loss_cls = MODELS.build(loss_cls)
-        self.loss_bbox = MODELS.build(loss_bbox)
+        self.loss_loc = FocalLoss(loss_loc)
+        self.loss_shape = BoundedIoULoss(loss_shape)
+        self.loss_cls = CrossEntropyLoss(loss_cls)
+        self.loss_bbox = SmoothL1Loss(loss_bbox)
 
         self.train_cfg = None
         self.test_cfg = None

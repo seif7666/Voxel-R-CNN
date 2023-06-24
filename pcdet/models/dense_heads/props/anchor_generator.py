@@ -8,13 +8,13 @@ from mmengine.utils import is_tuple_of
 from torch import Tensor
 from torch.nn.modules.utils import _pair
 
-from mmdet.registry import TASK_UTILS
+# from mmdet.registry import TASK_UTILS
 from mmdet.structures.bbox import HorizontalBoxes
 
 DeviceType = Union[str, torch.device]
 
 
-@TASK_UTILS.register_module()
+# @TASK_UTILS.register_module()
 class AnchorGenerator:
     """Standard anchor generator for 2D anchor-based detectors.
 
@@ -66,17 +66,34 @@ class AnchorGenerator:
         tensor([[-9., -9., 9., 9.]])]
     """
 
+    # def __init__(self,
+    #              strides: Union[List[int], List[Tuple[int, int]]],
+    #              ratios: List[float],
+    #              scales: Optional[List[int]] = None,
+    #              base_sizes: Optional[List[int]] = None,
+    #              scale_major: bool = True,
+    #              octave_base_scale: Optional[int] = None,
+    #              scales_per_octave: Optional[int] = None,
+    #              centers: Optional[List[Tuple[float, float]]] = None,
+    #              center_offset: float = 0.,
+    #              use_box_type: bool = False) -> None:
     def __init__(self,
-                 strides: Union[List[int], List[Tuple[int, int]]],
-                 ratios: List[float],
-                 scales: Optional[List[int]] = None,
-                 base_sizes: Optional[List[int]] = None,
-                 scale_major: bool = True,
-                 octave_base_scale: Optional[int] = None,
-                 scales_per_octave: Optional[int] = None,
-                 centers: Optional[List[Tuple[float, float]]] = None,
-                 center_offset: float = 0.,
-                 use_box_type: bool = False) -> None:
+                 dictionary:dict) -> None:
+        strides= dictionary['strides']
+        ratios=dictionary['ratios']
+        scales = None if not 'scales' in dictionary else dictionary['scales']
+        base_sizes = None if not 'base_sizes' in dictionary else dictionary['base_sizes']
+        scale_major = True if not 'scale_major' in dictionary else dictionary['scale_major']
+        octave_base_scale = None if not 'octave_base_scale' in dictionary else dictionary['octave_base_scale']
+        scales_per_octave = None if not 'scales_per_octave' in dictionary else dictionary['scales_per_octave']
+        centers = None if not 'centers' in dictionary else dictionary['centers']
+        center_offset = 0 if not 'center_offset' in dictionary else dictionary['center_offset']
+        use_box_type = False if not 'use_box_type' in dictionary else dictionary['use_box_type']
+        
+
+        
+
+
         # check center and center_offset
         if center_offset != 0:
             assert centers is None, 'center cannot be set when center_offset' \
