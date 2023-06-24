@@ -1,4 +1,5 @@
 # Copyright (c) OpenMMLab. All rights reserved.
+from .props.anchor_generator import AnchorGenerator
 from typing import List, Optional, Tuple
 import numpy as np
 import torch.nn as nn
