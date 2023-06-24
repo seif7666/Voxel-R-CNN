@@ -81,93 +81,7 @@ class FeatureAdaption(BaseModule):
         return x
 
 class GuidedAnchorHead(AnchorHeadTemplate):
-    """Guided-Anchor-based head (GA-RPN, GA-RetinaNet, etc.).
-
-    This GuidedAnchorHead will predict high-quality feature guided
-    anchors and locations where anchors will be kept in inference.
-    There are mainly 3 categories of bounding-boxes.
-
-    - Sampled 9 pairs for target assignment. (approxes)
-    - The square boxes where the predicted anchors are based on. (squares)
-    - Guided anchors.
-
-    Please refer to https://arxiv.org/abs/1901.03278 for more details.
-
-    Args:
-        num_classes (int): Number of classes.
-        in_channels (int): Number of channels in the input feature map.
-        feat_channels (int): Number of hidden channels. Defaults to 256.
-        approx_anchor_generator (:obj:`ConfigDict` or dict): Config dict
-            for approx generator
-        square_anchor_generator (:obj:`ConfigDict` or dict): Config dict
-            for square generator
-        anchor_coder (:obj:`ConfigDict` or dict): Config dict for anchor coder
-        bbox_coder (:obj:`ConfigDict` or dict): Config dict for bbox coder
-        reg_decoded_bbox (bool): If true, the regression loss would be
-            applied directly on decoded bounding boxes, converting both
-            the predicted boxes and regression targets to absolute
-            coordinates format. Defaults to False. It should be `True` when
-            using `IoULoss`, `GIoULoss`, or `DIoULoss` in the bbox head.
-        deform_groups: (int): Group number of DCN in FeatureAdaption module.
-            Defaults to 4.
-        loc_filter_thr (float): Threshold to filter out unconcerned regions.
-            Defaults to 0.01.
-        loss_loc (:obj:`ConfigDict` or dict): Config of location loss.
-        loss_shape (:obj:`ConfigDict` or dict): Config of anchor shape loss.
-        loss_cls (:obj:`ConfigDict` or dict): Config of classification loss.
-        loss_bbox (:obj:`ConfigDict` or dict): Config of bbox regression loss.
-        init_cfg (:obj:`ConfigDict` or list[:obj:`ConfigDict`] or dict or \
-            list[dict], optional): Initialization config dict.
-    """
-
-    # def __init__(
-    #     self,
-    #     num_classes: int,
-    #     in_channels: int,
-    #     feat_channels: int = 256,
-    #     approx_anchor_generator: ConfigType = dict(
-    #         type='AnchorGenerator',
-    #         octave_base_scale=8,
-    #         scales_per_octave=3,
-    #         ratios=[0.5, 1.0, 2.0],
-    #         strides=[4, 8, 16, 32, 64]),
-    #     square_anchor_generator: ConfigType = dict(
-    #         type='AnchorGenerator',
-    #         ratios=[1.0],
-    #         scales=[8],
-    #         strides=[4, 8, 16, 32, 64]),
-    #     anchor_coder: ConfigType = dict(
-    #         type='DeltaXYWHBBoxCoder',
-    #         target_means=[.0, .0, .0, .0],
-    #         target_stds=[1.0, 1.0, 1.0, 1.0]),
-    #     bbox_coder: ConfigType = dict(
-    #         type='DeltaXYWHBBoxCoder',
-    #         target_means=[.0, .0, .0, .0],
-    #         target_stds=[1.0, 1.0, 1.0, 1.0]),
-    #     reg_decoded_bbox: bool = False,
-    #     deform_groups: int = 4,
-    #     loc_filter_thr: float = 0.01,
-    #     train_cfg: OptConfigType = None,
-    #     test_cfg: OptConfigType = None,
-    #     loss_loc: ConfigType = dict(
-    #         type='FocalLoss',
-    #         use_sigmoid=True,
-    #         gamma=2.0,
-    #         alpha=0.25,
-    #         loss_weight=1.0),
-    #     loss_shape: ConfigType = dict(
-    #         type='BoundedIoULoss', beta=0.2, loss_weight=1.0),
-    #     loss_cls: ConfigType = dict(
-    #         type='CrossEntropyLoss', use_sigmoid=True, loss_weight=1.0),
-    #     loss_bbox: ConfigType = dict(
-    #         type='SmoothL1Loss', beta=1.0, loss_weight=1.0),
-    #     init_cfg: MultiConfig = dict(
-    #         type='Normal',
-    #         layer='Conv2d',
-    #         std=0.01,
-    #         override=dict(
-    #             type='Normal', name='conv_loc', std=0.01, lbias_prob=0.01))
-    # ) -> None:
+    
     def __init__(self,model_cfg,input_channels,num_class,class_names,grid_size,point_cloud_range,predict_boxes_when_training=True):
         super().__init__(
             model_cfg=model_cfg, num_class=num_class, class_names=class_names, grid_size=grid_size, point_cloud_range=point_cloud_range,
@@ -220,21 +134,6 @@ class GuidedAnchorHead(AnchorHeadTemplate):
 
         if self.train_cfg:
             pass
-            # self.assigner = TASK_UTILS.build(self.train_cfg['assigner'])
-            # # use PseudoSampler when no sampler in train_cfg
-            # if train_cfg.get('sampler', None) is not None:
-            #     self.sampler = TASK_UTILS.build(
-            #         self.train_cfg['sampler'], default_args=dict(context=self))
-            # else:
-            #     self.sampler = PseudoSampler()
-
-            # self.ga_assigner = TASK_UTILS.build(self.train_cfg['ga_assigner'])
-            # if train_cfg.get('ga_sampler', None) is not None:
-            #     self.ga_sampler = TASK_UTILS.build(
-            #         self.train_cfg['ga_sampler'],
-            #         default_args=dict(context=self))
-            # else:
-            #     self.ga_sampler = PseudoSampler()
 
         self._init_layers()
     def __initparameters(self):
