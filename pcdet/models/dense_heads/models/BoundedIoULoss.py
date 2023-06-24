@@ -409,7 +409,7 @@ class BoundedIoULoss(nn.Module):
     #              eps: float = 1e-3,
     #              reduction: str = 'mean',
     #              loss_weight: float = 1.0) -> None:
-    def __init(self,dictionary) -> None:
+    def __init__(self,dictionary) -> None:
         beta=0.2 if not 'beta' in dictionary else dictionary['beta']
         eps=1e-3 if not 'eps' in dictionary else dictionary['eps']
 
