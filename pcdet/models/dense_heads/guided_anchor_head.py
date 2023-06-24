@@ -207,5 +207,5 @@ class GuidedAnchorHead(AnchorHeadTemplate):
     def forward(self, x: List[Tensor]) -> Tuple[List[Tensor]]:
         """Forward features from the upstream network."""
         x=x['spatial_features_2d']
-        print(x)
+        print(x.shape)
         return multi_apply(self.forward_single, x)
