@@ -210,9 +210,16 @@ class GuidedAnchorHead(AnchorHeadTemplate):
         tensors=self.forward_single(tensors)
         print(tensors)
         print(len(tensors[1]))
-        x['batch_cls_preds']= tensors[0]
-        x['batch_box_preds']= tensors[1]
+        
         x['cls_preds_normalized'] = False
+
+        batch_cls_preds, batch_box_preds = self.generate_predicted_boxes(
+                batch_size=x['batch_size'],
+                cls_preds=tensors[0], box_preds=tensors[1], dir_cls_preds=None
+            )
+        
+        x['batch_cls_preds']= batch_cls_preds
+        x['batch_box_preds']= batch_box_preds
         return x
 
 
