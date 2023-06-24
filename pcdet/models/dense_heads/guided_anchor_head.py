@@ -9,15 +9,7 @@ from functools import partial
 from mmcv.ops import DeformConv2d, MaskedConv2d
 from mmengine.model import BaseModule
 from .anchor_head_template import AnchorHeadTemplate
-from mmengine.registry import TASK_UTILS as MMENGINE_TASK_UTILS
-from mmengine.registry import MODELS as MMENGINE_MODELS
-
-from mmengine.registry import Registry
-
-
-TASK_UTILS = Registry('task util', parent=MMENGINE_TASK_UTILS, locations=['mmdet.models'])
-MODELS = Registry('model', parent=MMENGINE_MODELS, locations=['mmdet.models'])
-
+from .MMregistries import MODELS,TASK_UTILS
 
 
 def multi_apply(func, *args, **kwargs):
