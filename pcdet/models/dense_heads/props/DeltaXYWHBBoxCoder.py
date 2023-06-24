@@ -8,7 +8,6 @@ from torch import Tensor
 
 from mmdet.registry import TASK_UTILS
 from mmdet.structures.bbox import BaseBoxes, HorizontalBoxes, get_box_tensor
-from .base_bbox_coder import BaseBBoxCoder
 
 from abc import ABCMeta, abstractmethod
 
