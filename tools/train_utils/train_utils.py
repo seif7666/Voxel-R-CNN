@@ -68,15 +68,17 @@ def train_model(model, optimizer, train_loader, model_func, lr_scheduler, optim_
                 lr_warmup_scheduler=None, ckpt_save_interval=1, max_ckpt_save_num=50,
                 merge_all_iters_to_one_epoch=False):
     accumulated_iter = start_iter
-    print(f'Length is {len(train_loader)}')
+    # print(f'Length is {len(train_loader)}')
     with tqdm.trange(start_epoch, total_epochs, desc='epochs', dynamic_ncols=True, leave=(rank == 0)) as tbar:
         total_it_each_epoch = len(train_loader)
         if merge_all_iters_to_one_epoch:
+            print('HEREEEEEE')
             assert hasattr(train_loader.dataset, 'merge_all_iters_to_one_epoch')
             train_loader.dataset.merge_all_iters_to_one_epoch(merge=True, epochs=total_epochs)
             total_it_each_epoch = len(train_loader) // max(total_epochs, 1)
         
         dataloader_iter = iter(train_loader)
+        print('HEREEEEEE afteriteration')
         for cur_epoch in tbar:
             if train_sampler is not None:
                 train_sampler.set_epoch(cur_epoch)
