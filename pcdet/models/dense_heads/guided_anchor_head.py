@@ -212,10 +212,10 @@ class GuidedAnchorHead(AnchorHeadTemplate):
         
         cls_score = cls_score.permute(0, 2, 3, 1).contiguous()  # [N, H, W, C]
         bbox_pred = bbox_pred.permute(0, 2, 3, 1).contiguous()  # [N, H, W, C]
-        print(cls_score.shape)
-        print(bbox_pred.shape)
-        print(shape_pred.shape)
-        print(loc_pred.shape)
+        # print(cls_score.shape)
+        # print(bbox_pred.shape)
+        # print(shape_pred.shape)
+        # print(loc_pred.shape)
 
         self.forward_ret_dict['cls_preds'] = cls_score
         self.forward_ret_dict['box_preds'] = bbox_pred
