@@ -217,6 +217,8 @@ class GuidedAnchorHead(AnchorHeadTemplate):
         print(shape_pred.shape)
         print(loc_pred.shape)
 
+        self.forward_ret_dict['cls_preds'] = cls_score
+        self.forward_ret_dict['box_preds'] = bbox_pred
         x['cls_preds_normalized'] = False
 
         batch_cls_preds, batch_box_preds = self.generate_predicted_boxes(
