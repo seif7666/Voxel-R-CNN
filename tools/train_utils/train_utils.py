@@ -70,6 +70,7 @@ def train_model(model, optimizer, train_loader, model_func, lr_scheduler, optim_
     accumulated_iter = start_iter
     with tqdm.trange(start_epoch, total_epochs, desc='epochs', dynamic_ncols=True, leave=(rank == 0)) as tbar:
         total_it_each_epoch = len(train_loader)
+        print(total_it_each_epoch)
         if merge_all_iters_to_one_epoch:
             assert hasattr(train_loader.dataset, 'merge_all_iters_to_one_epoch')
             train_loader.dataset.merge_all_iters_to_one_epoch(merge=True, epochs=total_epochs)
