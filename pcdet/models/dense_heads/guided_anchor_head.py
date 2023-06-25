@@ -186,7 +186,7 @@ class GuidedAnchorHead(AnchorHeadTemplate):
             deform_groups=self.deform_groups)
         print(self.num_anchors_per_location*self.num_class)
         self.conv_cls = MaskedConv2d(
-            self.feat_channels, self.num_anchors_per_location * self.num_class,
+            self.feat_channels, (self.num_anchors_per_location * self.num_class)[0],
             1)
         self.conv_reg = MaskedConv2d(self.feat_channels,
                                      self.num_base_priors * 4, 1)
