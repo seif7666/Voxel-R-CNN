@@ -226,6 +226,12 @@ class GuidedAnchorHead(AnchorHeadTemplate):
                 cls_preds=cls_score, box_preds=bbox_pred, dir_cls_preds=None
             )
         
+        if self.training:
+            targets_dict = self.assign_targets(
+                gt_boxes=x['gt_boxes']
+            )
+            self.forward_ret_dict.update(targets_dict)
+        
         x['batch_cls_preds']= batch_cls_preds
         x['batch_box_preds']= batch_box_preds
         return x
