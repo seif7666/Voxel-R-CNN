@@ -197,10 +197,10 @@ class GuidedAnchorHead(AnchorHeadTemplate):
         shape_pred = self.conv_shape(x)
         x = self.feature_adaption(x, shape_pred)
         # masked conv is only used during inference for speed-up
-        if not self.training:
-            mask = loc_pred.sigmoid()[0] >= self.loc_filter_thr
-        else:
-            mask = None
+        # if not self.training:
+        mask = loc_pred.sigmoid()[0] >= self.loc_filter_thr
+        # else:
+            # mask = None
         print(x.shape)
         cls_score = self.conv_cls(x, mask)
         bbox_pred = self.conv_reg(x, mask)
