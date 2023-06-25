@@ -77,12 +77,11 @@ def train_model(model, optimizer, train_loader, model_func, lr_scheduler, optim_
             total_it_each_epoch = len(train_loader) // max(total_epochs, 1)
         
         dataloader_iter = iter(train_loader)
-        print('HEREEEEEE afteriteration')
-        print(tbar)
+        for cur_epoch in tbar:
+            print('x')
         for cur_epoch in tbar:
             if train_sampler is not None:
                 train_sampler.set_epoch(cur_epoch)
-            print('Training an epoch*************************')
             # train one epoch
             if lr_warmup_scheduler is not None and cur_epoch < optim_cfg.WARMUP_EPOCH:
                 cur_scheduler = lr_warmup_scheduler
