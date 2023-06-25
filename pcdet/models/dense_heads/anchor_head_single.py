@@ -18,6 +18,7 @@ class AnchorHeadSingle(AnchorHeadTemplate):
             input_channels, self.num_anchors_per_location * self.num_class,
             kernel_size=1
         )
+        print(self.num_anchors_per_location * self.box_coder.code_size)
         self.conv_box = nn.Conv2d(
             input_channels, self.num_anchors_per_location * self.box_coder.code_size,
             kernel_size=1
