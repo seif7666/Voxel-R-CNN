@@ -88,7 +88,7 @@ def train_model(model, optimizer, train_loader, model_func, lr_scheduler, optim_
             model, optimizer, train_loader, model_func,
             lr_scheduler=cur_scheduler,
             accumulated_iter=accumulated_iter, optim_cfg=optim_cfg,
-            rank=rank, tbar=None, tb_log=tb_log,
+            rank=rank, s=None, tb_log=tb_log,
             leave_pbar=(epoch + 1 == total_epochs),
             total_it_each_epoch=total_it_each_epoch,
             dataloader_iter=dataloader_iter
