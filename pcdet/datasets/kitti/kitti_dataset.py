@@ -297,12 +297,10 @@ class KittiDataset(DatasetTemplate):
         annos = []
         for index, box_dict in enumerate(pred_dicts):
             print(batch_dict.keys())
-            print(pred_dicts)
-
-            frame_id = batch_dict['frame_id'][index]
+            frame_id = batch_dict['point_cloud'][index]
 
             single_pred_dict = generate_single_sample_dict(index, box_dict)
-            single_pred_dict['frame_id'] = frame_id
+            single_pred_dict['point_cloud'] = frame_id
             annos.append(single_pred_dict)
 
             if output_path is not None:
