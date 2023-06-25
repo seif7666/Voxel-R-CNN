@@ -301,7 +301,7 @@ class KittiDataset(DatasetTemplate):
             frame_id = batch_dict['voxel_num_points'][index]
 
             single_pred_dict = generate_single_sample_dict(index, box_dict)
-            single_pred_dict['voxel_num_points'] = frame_id
+            single_pred_dict['frame_id'] = frame_id
             annos.append(single_pred_dict)
 
             if output_path is not None:
