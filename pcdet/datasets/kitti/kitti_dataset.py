@@ -296,6 +296,7 @@ class KittiDataset(DatasetTemplate):
 
         annos = []
         for index, box_dict in enumerate(pred_dicts):
+            print(batch_dict.keys())
             frame_id = batch_dict['frame_id'][index]
 
             single_pred_dict = generate_single_sample_dict(index, box_dict)
