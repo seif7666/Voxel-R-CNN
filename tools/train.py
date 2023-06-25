@@ -187,7 +187,8 @@ def main():
     args.start_epoch = max(args.epochs - 10, 0)  # Only evaluate the last 10 epochs
 
     repeat_eval_ckpt(
-        model.module if dist_train else model,
+        model,
+        # model.module if dist_train else model,
         test_loader, args, eval_output_dir, logger, ckpt_dir,
         dist_test=dist_train
     )
