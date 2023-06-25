@@ -298,10 +298,10 @@ class KittiDataset(DatasetTemplate):
         for index, box_dict in enumerate(pred_dicts):
             print(batch_dict.keys())
             print(batch_dict['voxel_num_points'])
-            frame_id = batch_dict['point_cloud'][index]
+            frame_id = batch_dict['voxel_num_points'][index]
 
             single_pred_dict = generate_single_sample_dict(index, box_dict)
-            single_pred_dict['point_cloud'] = frame_id
+            single_pred_dict['voxel_num_points'] = frame_id
             annos.append(single_pred_dict)
 
             if output_path is not None:
