@@ -56,8 +56,8 @@ def train_one_epoch(model, optimizer, train_loader, model_func, lr_scheduler, ac
                 tb_log.add_scalar('meta_data/learning_rate', cur_lr, accumulated_iter)
                 for key, val in tb_dict.items():
                     tb_log.add_scalar('train/' + key, val, accumulated_iter)
-        print('******************Breaking***********************')
-        break
+        # print('******************Breaking***********************')
+        # break
     if rank == 0:
         pbar.close()
     return accumulated_iter
