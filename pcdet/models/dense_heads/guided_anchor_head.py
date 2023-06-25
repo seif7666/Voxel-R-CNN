@@ -185,10 +185,10 @@ class GuidedAnchorHead(AnchorHeadTemplate):
             kernel_size=3,
             deform_groups=self.deform_groups)
         self.conv_cls = MaskedConv2d(
-            self.feat_channels, self.num_base_priors * self.cls_out_channels,
+            self.feat_channels, self.num_anchors_per_location * self.num_class,
             1)
         self.conv_reg = MaskedConv2d(self.feat_channels,
-                                     self.num_base_priors * 4, 1)
+                                     self.num_anchors_per_location * self.box_coder.code_size, 1)
 
     def forward_single(self, x: Tensor) -> Tuple[Tensor]:
         """Forward feature of a single scale level."""
