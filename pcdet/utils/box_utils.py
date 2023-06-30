@@ -219,6 +219,7 @@ def boxes3d_kitti_camera_to_imageboxes(boxes3d, calib, image_shape=None):
     :return:
         box_2d_preds: (N, 4) [x1, y1, x2, y2]
     """
+    print(boxes3d)
     corners3d = boxes3d_to_corners3d_kitti_camera(boxes3d)
     pts_img, _ = calib.rect_to_img(corners3d.reshape(-1, 3))
     corners_in_image = pts_img.reshape(-1, 8, 2)
