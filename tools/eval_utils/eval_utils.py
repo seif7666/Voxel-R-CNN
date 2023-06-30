@@ -59,7 +59,6 @@ def eval_one_epoch(cfg, model, dataloader, epoch_id, logger, dist_test=False, sa
         
         with torch.no_grad():
             pred_dicts, ret_dict = model(batch_dict)
-        print('HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE')
         disp_dict = {}
         run_end_time = time.time()
         run_duration = run_end_time - run_start_time
