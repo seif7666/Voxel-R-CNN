@@ -8,4 +8,4 @@ CFG_DIR=cfgs
 
 CFG_NAME=voxel_rcnn/voxel_rcnn_car
 
-python -m torch.distributed.launch --nproc_per_node=${NGPUS} train.py --launcher pytorch --cfg_file cfgs/$CFG_NAME.yaml --epochs 2 --workers 1 --
+python -m torch.distributed.launch --nproc_per_node=${NGPUS} train.py --launcher pytorch --cfg_file cfgs/$CFG_NAME.yaml --epochs 2 --workers 1 
