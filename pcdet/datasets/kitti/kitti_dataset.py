@@ -297,6 +297,8 @@ class KittiDataset(DatasetTemplate):
         annos = []
         for index, box_dict in enumerate(pred_dicts):
             print(batch_dict.keys())
+            print(box_dict.keys())
+
             # print(batch_dict['point_cloud'])
             frame_id = batch_dict['voxel_num_points'][index]
 
