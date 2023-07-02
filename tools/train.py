@@ -196,6 +196,6 @@ def main():
     logger.info('**********************End evaluation %s/%s(%s)**********************' %
                 (cfg.EXP_GROUP_PATH, cfg.TAG, args.extra_tag))
 
-
+    print(f'Epoch {epoch_number} finished!')
 if __name__ == '__main__':
     main()
