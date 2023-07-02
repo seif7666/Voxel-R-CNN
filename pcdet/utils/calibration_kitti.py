@@ -81,7 +81,7 @@ class Calibration(object):
         :param pts_rect: (N, 3)
         :return pts_img: (N, 2)
         """
-        print(f'Points rect shape is {pts_rect.shape}')
+        # print(f'Points rect shape is {pts_rect.shape}')
         if pts_rect.shape[-1] ==3:
             pts_rect = self.cart_to_hom(pts_rect)
         pts_2d_hom = np.dot(pts_rect, self.P2.T)

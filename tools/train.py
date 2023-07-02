@@ -78,7 +78,8 @@ def main():
     if args.fix_random_seed:
         common_utils.set_random_seed(666)
 
-    output_dir = Path('/content/drive/MyDrive/Graduation Project/') #cfg.ROOT_DIR / 'output' / cfg.EXP_GROUP_PATH / cfg.TAG / args.extra_tag
+    epoch_number= input('Enter Epoch Number: ')
+    output_dir = Path(f'/content/drive/MyDrive/Graduation Project/output{epoch_number}/') #cfg.ROOT_DIR / 'output' / cfg.EXP_GROUP_PATH / cfg.TAG / args.extra_tag
     ckpt_dir = output_dir / 'ckpt'
     output_dir.mkdir(parents=True, exist_ok=True)
     ckpt_dir.mkdir(parents=True, exist_ok=True)
@@ -151,25 +152,25 @@ def main():
     # -----------------------start training---------------------------
     logger.info('**********************Start training %s/%s(%s)**********************'
                 % (cfg.EXP_GROUP_PATH, cfg.TAG, args.extra_tag))
-    # train_model(
-    #     model,
-    #     optimizer,
-    #     train_loader,
-    #     model_func=model_fn_decorator(),
-    #     lr_scheduler=lr_scheduler,
-    #     optim_cfg=cfg.OPTIMIZATION,
-    #     start_epoch=start_epoch,
-    #     total_epochs=args.epochs,
-    #     start_iter=it,
-    #     rank=cfg.LOCAL_RANK,
-    #     tb_log=tb_log,
-    #     ckpt_save_dir=ckpt_dir,
-    #     train_sampler=train_sampler,
-    #     lr_warmup_scheduler=lr_warmup_scheduler,
-    #     ckpt_save_interval=args.ckpt_save_interval,
-    #     max_ckpt_save_num=args.max_ckpt_save_num,
-    #     merge_all_iters_to_one_epoch=args.merge_all_iters_to_one_epoch
-    # )
+    train_model(
+        model,
+        optimizer,
+        train_loader,
+        model_func=model_fn_decorator(),
+        lr_scheduler=lr_scheduler,
+        optim_cfg=cfg.OPTIMIZATION,
+        start_epoch=start_epoch,
+        total_epochs=args.epochs,
+        start_iter=it,
+        rank=cfg.LOCAL_RANK,
+        tb_log=tb_log,
+        ckpt_save_dir=ckpt_dir,
+        train_sampler=train_sampler,
+        lr_warmup_scheduler=lr_warmup_scheduler,
+        ckpt_save_interval=args.ckpt_save_interval,
+        max_ckpt_save_num=args.max_ckpt_save_num,
+        merge_all_iters_to_one_epoch=args.merge_all_iters_to_one_epoch
+    )
 
     logger.info('**********************End training %s/%s(%s)**********************\n\n\n'
                 % (cfg.EXP_GROUP_PATH, cfg.TAG, args.extra_tag))
